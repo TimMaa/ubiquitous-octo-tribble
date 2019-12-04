@@ -10,7 +10,7 @@
   list-style: none;
 }
 
-.repo-list-item, .repo-list-title {
+.repo-list-item, .repo-list-title, .no-repos {
   padding: var(--big-space);
 }
 

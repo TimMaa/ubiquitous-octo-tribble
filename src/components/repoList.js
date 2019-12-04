@@ -11,18 +11,22 @@ const RepoList = ({ repos }) => {
         <span>Forks <i className="fas fa-utensils"></i></span>
         <span>Stars <i className="fas fa-star"></i></span>
       </div>
-      <ul className="repo-list">
-        { repos.map(repo => (
-          <li className="repo-list-item" key={repo.id}>
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-              <span>{repo.name}</span> 
-              <span>{repo.forks}</span>
-              <span>{repo.watchers}</span>
-            </a>
-          </li>
-        )) 
-        }
-      </ul>
+      { repos.length ?
+          <ul className="repo-list">
+            { repos.map(repo => (
+              <li className="repo-list-item" key={repo.id}>
+                <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                  <span>{repo.name}</span> 
+                  <span>{repo.forks}</span>
+                  <span>{repo.watchers}</span>
+                </a>
+              </li>
+            )) 
+            }
+          </ul>
+        :
+        <div className="no-repos">No repos available</div>
+      }
     </div>
   )
 }
