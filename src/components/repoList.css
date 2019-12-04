@@ -1,0 +1,30 @@
+.repo-list-container {
+  flex: 1;
+  overflow: auto;
+}
+
+.repo-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.repo-list-item, .repo-list-title {
+  padding: var(--big-space);
+}
+
+.repo-list-item span, .repo-list-title span {
+  display: inline-block;
+  width: 100px;
+}
+
+.repo-list-item span:first-child, .repo-list-title span:first-child {
+  width: 300px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark);
+  height: 40px;
+}
