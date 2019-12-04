@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import ErrorMsg from './components/errorMsg';
-import RepoList from './components/repoList';
+import ErrorMsg from './components/errorMsg/errorMsg';
+import RepoList from './components/repoList/repoList';
 import { fetchRepos, fetchReposError, fetchReposSuccess, clearRepos } from './actions/repos';
 import './App.css';
 
 const gitHubApi = "https://api.github.com";
 
-function App({ dispatch, error, loading, repos }) {
+export function App({ dispatch, error, loading, repos }) {
 
   const [user, setUser] = useState('');
 

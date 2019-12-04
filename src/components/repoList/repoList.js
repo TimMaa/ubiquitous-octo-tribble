@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import './repoList.css'
 
-const RepoList = ({ repos }) => {
+export const RepoList = ({ repos }) => {
   return (
     <div className="repo-list-container">
       <div className="repo-list-title">

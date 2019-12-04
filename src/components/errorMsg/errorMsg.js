@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import './errorMsg.css'
 
-const ErrorMsg = ({ error }) => {
+export const ErrorMsg = ({ error }) => {
   return (
     <div className="error-container">
       <span className="error">Error: {error}</span>
