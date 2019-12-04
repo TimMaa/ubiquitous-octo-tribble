@@ -92,13 +92,21 @@
   border-radius: 10px;
 }
 
-.submit-btn {
+.btn {
   margin-left: var(--small-space);
 
   padding: var(--small-space) var(--big-space);
-  background-color: #fff;
   border: 1px solid var(--dark);
   border-radius: 10px;
 
   font-size: inherit;
+}
+
+.submit-btn {
+  background-color: #fff;
+}
+
+.reset-btn {
+  background-color: var(--dark);
+  color: white;
 }

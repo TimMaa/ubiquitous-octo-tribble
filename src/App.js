@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ErrorMsg from './components/errorMsg';
 import RepoList from './components/repoList';
-import { fetchRepos, fetchReposError, fetchReposSuccess } from './actions/repos';
+import { fetchRepos, fetchReposError, fetchReposSuccess, clearRepos } from './actions/repos';
 import './App.css';
 
 const gitHubApi = "https://api.github.com";
 
 function App({ dispatch, error, loading, repos }) {
+
+  const [user, setUser] = useState('');
+
   const handleSubmit = e => {
     e.preventDefault();
-    const data = new FormData(e.target);
     dispatch(fetchRepos());
-    return fetch(`${gitHubApi}/users/${data.get('username')}/repos`)
+    return fetch(`${gitHubApi}/users/${user}/repos`)
       .then(response => {
         if (!response.ok) {
           throw response.statusText;
@@ -21,6 +23,12 @@ function App({ dispatch, error, loading, repos }) {
       })
       .then(repos => dispatch(fetchReposSuccess(repos)))
       .catch(error => dispatch(fetchReposError(error)));
+  }
+
+  const handleReset = e => {
+    e.preventDefault();
+    dispatch(clearRepos());
+    setUser('');
   }
 
   return (
@@ -34,12 +42,13 @@ function App({ dispatch, error, loading, repos }) {
       </div>
       }
       <div className="main">
-        <form className="search-form" onSubmit={handleSubmit}>
+        <form className="search-form" onSubmit={handleSubmit} onReset={handleReset}>
           <label className="form-label" htmlFor="username">Enter GitHub username:</label>
-          <input className="form-field" type="text" id="username" name="username"></input>
-          <button className="submit-btn" type="submit">Submit</button>
+          <input className="form-field" type="text" id="username" name="username" value={user} onChange={e => setUser(e.target.value)}></input>
+          <button className="btn submit-btn" type="submit">Submit</button>
+          <button className="btn reset-btn" type="reset">Reset</button>
         </form>
-        { !!repos.length && <RepoList/> }
+        { repos && <RepoList/> }
         { error && <ErrorMsg /> }
       </div>
     </>
